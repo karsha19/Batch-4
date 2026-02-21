@@ -1,0 +1,33 @@
+class Solution {
+
+public static boolean KyaBanana(int mid,int[]piles,int target){
+        long long totaltime=0;
+        for(int i=0;i<piles.length;i++){
+       totaltime=piles[i]/mid;
+       if(piles[i]%mid!=0) totaltime++;
+        } 
+         if (totaltime<=target) return true;
+       return false;
+}
+
+    public int minEatingSpeed(int[] piles, int h) {
+        int low=1;
+        int high=0;
+        int ans;
+           for(int num:piles){
+              high=Math.max(num,high);
+           }
+           while(low<=high){
+            int mid=low+((high-low)/2);
+            if(KyaBanana(mid,piles,h) ){
+                ans=mid;
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+               
+           }
+         return ans;
+    }
+};
